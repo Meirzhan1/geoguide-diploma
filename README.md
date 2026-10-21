@@ -92,7 +92,7 @@ Choices and alternatives are justified in the [technology comparison](docs/05_Te
 
 - **Repository:** https://github.com/Meirzhan1/geoguide-diploma
 - **YouTrack (Scrum, key GEO):** https://meirzhan.youtrack.cloud/projects/GEO
-- **UX prototype:** https://claude.ai/artifact/PXmUW71qvCEPCHBa92Vz5S (clickable; sample data)
+- **UX prototype:**  [`docs/prototype/`](docs/prototype/): open [`geoguide-prototype.html`](docs/prototype/geoguide-prototype.html) in a browser; screenshots of all screens are in [`docs/prototype/screens/`](docs/prototype/screens/)
 - **Documentation:** [`docs/`](docs/) (Word documents and the [interview guide](docs/interview-guide.md))
 - **Diagrams:** [`diagrams/`](diagrams/) (editable `.dot` sources and exported `.png`/`.svg`)
 
