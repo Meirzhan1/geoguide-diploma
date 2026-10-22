@@ -1,0 +1,27 @@
+digraph usecase {
+  rankdir=LR; fontname="Times New Roman"; nodesep=0.35; ranksep=1.4; compound=true;
+  node [fontname="Times New Roman", fontsize=12];
+  edge [fontname="Times New Roman", fontsize=10, color="#444444", arrowhead=none];
+  tourist [label="Tourist", shape=box, style=filled, fillcolor="#E8F0FE"];
+  admin [label="Content\nadministrator", shape=box, style=filled, fillcolor="#E8F0FE"];
+  subgraph cluster_sys { label="GeoGuide"; style="rounded"; color="#444444"; fontsize=14;
+    node [shape=ellipse, style=filled, fillcolor="#FFFFFF", color="#444444"];
+    uc1 [label="UC1 Set and edit interests"];
+    uc2 [label="UC2 Recognize building\nwith camera"];
+    uc3 [label="UC3 Handle low-confidence\nrecognition"];
+    uc4 [label="UC4 View place details"];
+    uc5 [label="UC5 Ask AI guide"];
+    uc6 [label="UC6 Retrieve verified\npassages"];
+    uc7 [label="UC7 Receive arrival\nnotification"];
+    uc8 [label="UC8 Configure notifications\n(radius, quiet hours)"];
+    uc9 [label="UC9 View recommendations"];
+    uc10 [label="UC10 Save place"];
+    uc11 [label="UC11 Report incorrect answer"];
+    uc12 [label="UC12 Manage places and\nknowledge base"];
+  }
+  tourist -> uc1; tourist -> uc2; tourist -> uc4; tourist -> uc5; tourist -> uc7; tourist -> uc8; tourist -> uc9; tourist -> uc10; tourist -> uc11;
+  admin -> uc12;
+  uc3 -> uc2 [arrowhead=open, style=dashed, label="«extend»"];
+  uc5 -> uc6 [arrowhead=open, style=dashed, label="«include»"];
+  uc7 -> uc4 [arrowhead=open, style=dashed, label="«include»"];
+}

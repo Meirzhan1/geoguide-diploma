@@ -1,0 +1,22 @@
+digraph context {
+  rankdir=LR; fontname="Times New Roman"; fontsize=12; nodesep=0.6; ranksep=1.1;
+  node [fontname="Times New Roman", fontsize=12, shape=box, style="rounded,filled", fillcolor="#FFFFFF", color="#444444"];
+  edge [fontname="Times New Roman", fontsize=10, color="#444444"];
+  tourist [label="Tourist\n(mobile user)", shape=box, fillcolor="#E8F0FE"];
+  admin   [label="Content administrator\n(team member)", fillcolor="#E8F0FE"];
+  system  [label="GeoGuide\nmobile app + backend\n\nrecognition · AI guide chat ·\narrival notifications · recommendations", fillcolor="#D9E2F3", penwidth=2, width=3.2, height=1.6];
+  llm     [label="Language-model provider\n(hosted LLM API)", fillcolor="#FFF2CC"];
+  vision  [label="Cloud landmark-detection API\n(baseline / fallback)", fillcolor="#FFF2CC"];
+  os      [label="Mobile OS services\nlocation · geofencing ·\nnotifications · camera", fillcolor="#FFF2CC"];
+  geo     [label="Open map / geodata source\n(place coordinates, optional)", fillcolor="#FFF2CC"];
+  tourist -> system [label="photo, questions,\ninterests, settings"];
+  system -> tourist [label="place explanation,\nanswers, notifications,\nrecommendations"];
+  admin -> system [label="places, knowledge-base passages,\nreference photographs"];
+  system -> llm [label="question + retrieved\nverified passages"];
+  llm -> system [label="generated answer"];
+  system -> vision [label="test photo\n(evaluation / fallback)"];
+  vision -> system [label="landmark name,\nscore"];
+  os -> system [label="position, geofence events"];
+  system -> os [label="register geofences,\nshow notification"];
+  geo -> system [label="coordinates (import)", style=dashed];
+}
