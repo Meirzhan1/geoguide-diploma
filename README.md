@@ -61,7 +61,7 @@ Both students are full-stack developers and can work on any component. Each work
 **Stage: analysis and design (first pre-defense, 24 October 2026).** No runnable code yet.
 
 - [x] Project proposal and scope ([docs/01](docs/01_Project_Proposal.docx))
-- [ ] Evidence of relevance: desk evidence done, interview results to be added ([docs/02](docs/02_Evidence_of_Relevance.docx))
+- [x] Evidence of relevance ([docs/02](docs/02_Evidence_of_Relevance.docx))
 - [x] Literature review ([docs/03](docs/03_Literature_Review.docx))
 - [x] Existing system comparison ([docs/04](docs/04_Existing_Systems_Comparison.docx))
 - [x] Technology comparison ([docs/05](docs/05_Technology_Comparison.docx))
