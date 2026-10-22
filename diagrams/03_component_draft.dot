@@ -1,0 +1,41 @@
+digraph components {
+  rankdir=TB; fontname="Times New Roman"; nodesep=0.45; ranksep=0.8; compound=true; newrank=true;
+  node [fontname="Times New Roman", fontsize=11, shape=component, style=filled, fillcolor="#FFFFFF", color="#444444"];
+  edge [fontname="Times New Roman", fontsize=9, color="#444444"];
+  subgraph cluster_mobile { label="Mobile app (React Native / Expo development build)"; style="rounded,filled"; fillcolor="#EEF3FB"; color="#6B87B8";
+    ui [label="Screens and navigation\n(onboarding, home, place, settings)"];
+    cam [label="Camera module"];
+    chatui [label="Chat UI"];
+    geo [label="Geofence service\n(nearest-places set)"];
+    notif [label="Local notifications"];
+    apiclient [label="API client"];
+  }
+  subgraph cluster_back { label="Backend (FastAPI, Docker Compose)"; style="rounded,filled"; fillcolor="#F3F8EC"; color="#7DA05A";
+    router [label="REST API + OpenAPI\n(validation, auth, rate limits)"];
+    recog [label="Recognition service\nencoder + GPS filter +\nvector search + threshold"];
+    know [label="Knowledge retrieval\n(passage search)"];
+    chat [label="Chat orchestrator\n(prompt, grounding check,\nrefusal, source labels)"];
+    rec [label="Recommendation service\n(interests, distance, hours)"];
+    place [label="Place service\n(details, geofence list)"];
+    fb [label="Feedback service\n(reports, ratings)"];
+    adm [label="Import tools\n(places, passages, photos)"];
+  }
+  subgraph cluster_data { label="Data"; style="rounded,filled"; fillcolor="#FDF3E7"; color="#C99A5B";
+    pg [label="PostgreSQL\nPostGIS + pgvector\n(places, passages, embeddings,\nusers, feedback)", shape=cylinder];
+    files [label="Reference photographs\n(file storage)", shape=folder];
+  }
+  subgraph cluster_ext { label="External services"; style="rounded,filled"; fillcolor="#FFF9E0"; color="#C9B458";
+    llm [label="LLM provider API"];
+    vision [label="Cloud landmark API\n(baseline / fallback)"];
+    os [label="OS location and\nnotification services"];
+  }
+  ui -> apiclient; cam -> apiclient; chatui -> apiclient;
+  geo -> os [dir=both, label="events"]; geo -> notif; notif -> ui [label="opens place"];
+  apiclient -> router [label="HTTPS / JSON"];
+  router -> recog; router -> chat; router -> rec; router -> place; router -> fb;
+  chat -> know; recog -> pg; know -> pg; rec -> pg; place -> pg; fb -> pg;
+  recog -> files; adm -> pg; adm -> files;
+  chat -> llm [label="question + passages"];
+  recog -> vision [style=dashed, label="baseline"];
+  place -> geo [style=invis];
+}
